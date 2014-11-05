@@ -1,0 +1,34 @@
+[
+  {
+    "model": "app.OrgUnit",
+    "pk": 1,
+    "fields": {
+      "name": "BRS secretariat"
+    }
+  },
+  {
+    "model": "app.OrgUnit",
+    "pk": 2,
+    "fields": {
+      "name": "CERN"
+    }
+  },
+  {
+    "model": "app.Lang",
+    "pk": 1,
+    "fields": {
+      "name": "English"
+    }
+  },  
+  {
+    "model": "app.Document",
+    "pk": 1,
+    "fields": {
+      "group": "isbn-1",
+      "title": "Document 1",
+      "description": "Some description",
+      "orgunit": 1,
+      "lang": 1
+    }
+  }
+]

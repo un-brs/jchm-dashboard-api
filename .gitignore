@@ -1,0 +1,10 @@
+# python cache
+*.py[oc]
+__pycache__/
+
+# IDE files
+*.sublime-*
+
+# temp
+venv
+tmp
