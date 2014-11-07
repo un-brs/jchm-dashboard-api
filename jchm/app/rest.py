@@ -1,5 +1,7 @@
 # Serializers define the API representation.
-from jchm.app.models import OrgUnit, Lang, Document, File
+from jchm.app.models import (
+    OrgUnit, Lang, Document, File, Module, OrgUnitModule
+)
 from rest_framework import serializers, viewsets
 
 # Serializers define the API representation.
@@ -9,28 +11,43 @@ class OrgUnitSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = OrgUnit
-        fields = ('name',)
+        fields = ('id','name', 'description', 'address')
 
 
 class LangSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Lang
-        fields = ('name',)
+        fields = ('id', 'name')
 
 
 class FileSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = File
-        fields = ('uri', 'name', 'size', 'doc')
+        fields = ('id', 'uri', 'name', 'size', 'doc')
 
 
 class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Document
-        fields = ('internal_id', 'title', 'orgunit', 'group', 'description', 'lang')
+        fields = (
+            'internal_id', 'title', 'orgunit', 'group', 'description', 'lang')
+
+
+class ModuleSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Module
+        fields = ('id', 'name', 'description')
+
+
+class OrgUnitModuleSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = OrgUnitModule
+        fields = ('id', 'module', 'orgunit', 'endpoint')
 
 # ViewSets define the view behavior.
 
@@ -53,3 +70,13 @@ class FileViewSet(viewsets.ModelViewSet):
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+
+
+class ModuleViewSet(viewsets.ModelViewSet):
+    queryset = Module.objects.all()
+    serializer_class = ModuleSerializer
+
+
+class OrgUnitModuleViewSet(viewsets.ModelViewSet):
+    queryset = OrgUnitModule.objects.all()
+    serializer_class = OrgUnitModuleSerializer

@@ -3,6 +3,8 @@ from django.db import models
 
 class OrgUnit(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    description = models.TextField()
+    address = models.TextField()
 
     def __str__(self):
         return self.name
@@ -27,9 +29,9 @@ class Lang(models.Model):
 
 
 class Document(Obj):
-    group = models.CharField(max_length=255, unique=True)
-    title = models.CharField(max_length=255, unique=True)
-    description = models.TextField(max_length=255, unique=True)
+    group = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
     lang = models.ForeignKey(Lang)
 
     def __str__(self):
@@ -48,3 +50,22 @@ class File(models.Model):
         return "name=%s; size=%d; doc=%s" % (
             self.name, self.size, self.doc.title
         )
+
+
+class Module(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class OrgUnitModule(models.Model):
+    module = models.ForeignKey(Module)
+    orgunit = models.ForeignKey(OrgUnit)
+    endpoint = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "orgunit=%s; module=%s; endpoint=%s" % (self.orgunit.name,
+                                                       self.module.name,
+                                                       self.endpoint)

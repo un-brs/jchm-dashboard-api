@@ -1,16 +1,38 @@
 [
   {
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$12000$ZJezlJXScb8Z$p9KfoRmFduKjklXUbKrUX2luN8OgFwtv3k8AwBdnt5o=",
+      "is_staff": true,
+      "first_name": "",
+      "user_permissions": [],
+      "last_name": "",
+      "date_joined": "2014-11-06T18:46:48.207Z",
+      "username": "amazurov",
+      "last_login": "2014-11-06T18:46:48.207Z",
+      "email": "alexander.mazurov@gmail.com",
+      "groups": [],
+      "is_active": true,
+      "is_superuser": true
+    },
+    "model": "auth.user"
+  },
+  {
     "model": "app.OrgUnit",
     "pk": 1,
     "fields": {
-      "name": "BRS secretariat"
+      "name": "BRS secretariat",
+      "address": "11-13, Chemin des Anémones - 1219 Châtelaine, Switzerland",
+      "description": "The three leading global chemicals and waste management instruments provide concrete measures, new initiatives and viable solutions to current and emerging issues related to hazardous chemicals and waste."
     }
   },
   {
     "model": "app.OrgUnit",
     "pk": 2,
     "fields": {
-      "name": "CERN"
+      "name": "CERN",
+      "address": "CH-1211 Geneva 23, Switzerland",
+      "description": "At CERN, the European Organization for Nuclear Research, physicists and engineers are probing the fundamental structure of the universe. They use the world's largest and most complex scientific instruments to study the basic constituents of matter – the fundamental particles. The particles are made to collide together at close to the speed of light. The process gives the physicists clues about how the particles interact, and provides insights into the fundamental laws of nature."
     }
   },
   {
@@ -23,12 +45,73 @@
   {
     "model": "app.Document",
     "pk": 1,
-    "fields": {
+    "fields": { 
       "group": "isbn-1",
       "title": "Document 1",
       "description": "Some description",
       "orgunit": 1,
       "lang": 1
+    }
+  },
+  {
+    "model": "app.File",
+    "pk": 1,
+    "fields": { 
+      "uri": "http://chm.pops.int/Portals/0/download.aspx?d=UNEP-POPS-BATBEP-GUID-GUIDELINES-All.En.pdf",
+      "name": "UNEP-POPS-BATBEP-GUID-GUIDELINES-All.En.pdf",
+      "size": 150000,
+      "doc": 1
+    }
+  },  
+  {
+    "model": "app.Module",
+    "pk": 1,
+    "fields": { 
+      "name": "Documents",
+      "description": "List of documents"
+    }
+  },
+  {
+    "model": "app.Module",
+    "pk": 2,
+    "fields": { 
+      "name": "Contacts",
+      "description": "Address book"
+    }
+  },  
+  {
+    "model": "app.Module",
+    "pk": 3,
+    "fields": { 
+      "name": "Events",
+      "description": "Calendar of events"
+    }
+  },
+  {
+    "model": "app.OrgUnitModule",
+    "pk": 1,
+    "fields": { 
+      "module": 1,
+      "orgunit": 1,
+      "endpoint": "http://informea.pops.int/mfilesDocs3/Publications.svc"
+    }
+  },
+  {
+    "model": "app.OrgUnitModule",
+    "pk": 2,
+    "fields": { 
+      "module": 2,
+      "orgunit": 1,
+      "endpoint": "http://informea.pops.int/mfilesDocs3/Contacts.svc"
+    }
+  },
+  {
+    "model": "app.OrgUnitModule",
+    "pk": 3,
+    "fields": { 
+      "module": 1,
+      "orgunit": 2,
+      "endpoint": "http://cds.cern.ch/api"
     }
   }
 ]
